@@ -5,17 +5,23 @@ import axios from "axios";
 export default function Weather (props) {
     const[ready, setReady] = useState(false);
     const[city, setCity]= useState(props.defaultCity);
-    const[temperature, setTemperature] = useState({});
+    const[weather, setWeather] = useState({});
 
     function handleResponse (response) {
         console.log(response.data);
         setReady(true);
-        setTemperature(response.data.main.temp);
+        setWeather({
+        date: new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}),
+        temperature:response.data.main.temp,
+        humidity:response.data.main.humidity,
+        wind: response.data.wind.speed,
+    });
     }
 
     function changeCity(event) {
       event.preventDefault();
       setCity = event.target.value;
+
 
     }
     
@@ -27,10 +33,12 @@ export default function Weather (props) {
            <input type="submit" />
          </form>
          <div>
+            <div>{weather.date}</div>
+           <div>07:00</div>
            <div>⛅</div>
-           <div>{Math.round(temperature)}℃</div>
-           <div>Humidity: 7%</div>
-           <div>Wind: 30 km/h</div>
+           <div>{Math.round(weather.temperature)}℃</div>
+           <div>Humidity: {weather.humidity}%</div>
+           <div>Wind: {weather.wind}km/h</div>
            <div>Forecast: ☀️🌦️🌥️🌤️☀️</div>
          </div>
        </div>
