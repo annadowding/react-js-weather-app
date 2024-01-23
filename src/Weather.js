@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./Weather.css";
 import axios from "axios";
+import FormattedDate from "./FormattedDate.js"
 
 export default function Weather (props) {
     const[ready, setReady] = useState(false);
@@ -11,30 +12,27 @@ export default function Weather (props) {
         console.log(response.data);
         setReady(true);
         setWeather({
-        date: new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}),
+        date: new Date(response.data.dt*1000),
         temperature:response.data.main.temp,
         humidity:response.data.main.humidity,
         wind: response.data.wind.speed,
     });
     }
 
-    function changeCity(event) {
+    function updateCity(event) {
       event.preventDefault();
       setCity = event.target.value;
-
-
     }
     
     if (ready) {
         return (
        <div className="Weather">
          <form>
-           <input type="search" onChange={changeCity}/>
+           <input type="search" onClick={updateCity}/>
            <input type="submit" />
          </form>
          <div>
-            <div>{weather.date}</div>
-           <div>07:00</div>
+           <FormattedDate date={weather.date}/>
            <div>⛅</div>
            <div>{Math.round(weather.temperature)}℃</div>
            <div>Humidity: {weather.humidity}%</div>
