@@ -16,6 +16,7 @@ export default function Weather (props) {
         temperature:response.data.main.temp,
         humidity:response.data.main.humidity,
         wind: response.data.wind.speed,
+        city: response.data.name,
     })
   }
 
@@ -42,6 +43,7 @@ export default function Weather (props) {
            <input type="submit" />
          </form>
          <div>
+          <div>{weather.city}</div>
            <FormattedDate date={weather.date}/>
            <div>⛅</div>
            <div>{Math.round(weather.temperature)}℃</div>

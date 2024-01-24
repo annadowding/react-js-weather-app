@@ -1,5 +1,5 @@
 import React from "react";
-import LocalTime from "./LocalTime.js";
+
 
 export default function FormattedDate (props) {
     let date = props.date;
@@ -22,10 +22,9 @@ export default function FormattedDate (props) {
     return (
         <div className="FormattedDate">
         <div>GMT: {hours}:{minutes}</div> 
-        <LocalTime />
         <div>{day} {dateToday} {month}</div>
         </div>
     )
 
-}
+    }
 
