@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./Weather.css";
 import axios from "axios";
-import FormattedDate from "./FormattedDate.js"
+import FormattedSunrise from "./FormattedSunrise.js"
 
 export default function Weather (props) {
     const[ready, setReady] = useState(false);
@@ -12,7 +12,7 @@ export default function Weather (props) {
         console.log(response.data);
         setReady(true);
         setWeather({
-        date: new Date(response.data.dt*1000),
+        sunrise: new Date((response.data.sys.sunrise + response.data.timezone)*1000),
         temperature:response.data.main.temp,
         humidity:response.data.main.humidity,
         wind: response.data.wind.speed,
@@ -44,7 +44,7 @@ export default function Weather (props) {
          </form>
          <div>
           <div>{weather.city}</div>
-           <FormattedDate date={weather.date}/>
+           <FormattedSunrise date={weather.sunrise}/>
            <div>⛅</div>
            <div>{Math.round(weather.temperature)}℃</div>
            <div>Humidity: {weather.humidity}%</div>
