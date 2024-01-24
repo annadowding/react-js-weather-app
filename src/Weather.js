@@ -8,7 +8,7 @@ export default function Weather (props) {
     const[city, setCity]= useState(props.defaultCity);
     const[weather, setWeather] = useState({});
 
-    function handleResponse (response) {
+    function handleWeatherData (response) {
         console.log(response.data);
         setReady(true);
         setWeather({
@@ -16,19 +16,29 @@ export default function Weather (props) {
         temperature:response.data.main.temp,
         humidity:response.data.main.humidity,
         wind: response.data.wind.speed,
-    });
+    })
+  }
+
+      function handleSubmit (event) {
+        event.preventDefault();
+        handleResponse();
+      }
+
+      function handleCityChange(event) {
+        setCity(event.target.value);
+      }
+
+    function handleResponse () {
+    let apiKey = "a6fba614573136180c060a15c9ad70ad";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleWeatherData);
     }
 
-    function updateCity(event) {
-      event.preventDefault();
-      setCity = event.target.value;
-    }
-    
     if (ready) {
-        return (
-       <div className="Weather">
-         <form>
-           <input type="search" onClick={updateCity}/>
+      return (
+        <div className="Weather">
+         <form onSubmit={handleSubmit}>
+           <input type="search" onChange={handleCityChange}/>
            <input type="submit" />
          </form>
          <div>
@@ -41,16 +51,16 @@ export default function Weather (props) {
          </div>
        </div>
     
-     )} else {
-        let apiKey = "a6fba614573136180c060a15c9ad70ad";
-        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-        axios.get(apiUrl).then(handleResponse);
-
+    );
+  } else {
+handleResponse();
         return (
             "Loading..."
         )
+        
      }
-    } 
+    
+}
     
 
 

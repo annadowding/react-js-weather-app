@@ -20,7 +20,8 @@ export default function FormattedDate (props) {
     
     return (
         <div className="FormattedDate">
-        <div>{hours}:{minutes}</div> 
+        <div>GMT: {hours}:{minutes}</div> 
+        <div>Local Time</div>
         <div>{day} {dateToday} {month}</div>
         </div>
     )
