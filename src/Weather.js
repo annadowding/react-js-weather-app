@@ -4,6 +4,7 @@ import axios from "axios";
 import FormattedDate from "./FormattedDate.js";
 import Sunrise from "./Sunrise.js";
 import Sunset from "./Sunset.js";
+import Forecast from "./Forecast.js";
 
 export default function Weather (props) {
     const[ready, setReady] = useState(false);
@@ -59,7 +60,7 @@ export default function Weather (props) {
             <div>{Math.round(weather.temperature)}℃</div>
             <div>Humidity: {weather.humidity}%</div>
             <div>Wind: {weather.wind}km/h</div>
-            <div>Forecast: ☀️🌦️🌥️🌤️☀️</div>
+            <Forecast />
           </div>
         </div>
       );
