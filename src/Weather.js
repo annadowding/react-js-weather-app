@@ -53,7 +53,7 @@ export default function Weather (props) {
           </form>
           <div>
             <div>{weather.city}</div>
-            <FormattedDate date={weather.date} />
+            <FormattedDate date={weather.sunrise} />
             <Sunrise sunrise={weather.sunrise} />
             <Sunset sunset={weather.sunset} />
             <div>⛅</div>
