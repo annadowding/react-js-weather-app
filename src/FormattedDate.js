@@ -19,7 +19,10 @@ export default function FormattedDate (props) {
     let month = months[date.getMonth()];
     
     return (
-        `${hours}:${minutes} ${day} ${dateToday} ${month}`
+        <div className="FormattedDate">
+        <div>{hours}:{minutes}</div> 
+        <div>{day} {dateToday} {month}</div>
+        </div>
     )
 
 }
