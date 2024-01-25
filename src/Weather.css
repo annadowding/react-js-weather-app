@@ -2,3 +2,15 @@ form {
     margin-bottom: 15px;
 }
 
+body {
+    text-align: center;
+}
+
+.weather {
+    text-align: start;
+}
+
+.forecast {
+    display: inline-block;
+    padding: 15px;
+}

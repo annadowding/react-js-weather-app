@@ -56,15 +56,20 @@ export default function Weather (props) {
               <input type="submit" />
             </form>
             <div>
-              <div>{weather.city}</div>
-              <FormattedDate date={weather.sunrise} />
-              <Sunrise sunrise={weather.sunrise} />
-              <Sunset sunset={weather.sunset} />
-              <div>⛅</div>
-              <div>{Math.round(weather.temperature)}℃</div>
-              <div>Humidity: {weather.humidity}%</div>
-              <div>Wind: {weather.wind}km/h</div>
-              <Forecast coordinates={weather.coordinates} />
+              <div className="weather">
+                <div>{weather.city}</div>
+                <FormattedDate date={weather.sunrise} />
+                <Sunrise sunrise={weather.sunrise} />
+                <Sunset sunset={weather.sunset} />
+                <div>⛅</div>
+                <div>{Math.round(weather.temperature)}℃</div>
+                <div>Humidity: {weather.humidity}%</div>
+                <div>Wind: {weather.wind}km/h</div>
+              </div>
+            
+                <div className="forecast">
+                  <Forecast coordinates={weather.coordinates} />
+                </div> 
             </div>
           </div>
         );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherForecastDay from "./WeatherForecastDay.js";
-import ForecastIcon from "./ForecastIcon.js";
+import "./Forecast.css";
 
 export default function Forecast (props) {
     let [loaded, setLoaded] = useState(false);
@@ -30,10 +30,10 @@ if (loaded) {
                 {forecast.map(function(forecastDay, index) {
                     if (index < 5) {
                     return (
-                      <div>
+                      <div className="forecast">
                         <div key={index}>
                           <WeatherForecastDay data={forecastDay} />
-                          <ForecastIcon data={forecastDay} />
+                          
                         </div>
                       </div>
                     );
