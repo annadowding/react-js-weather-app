@@ -9,7 +9,10 @@ export default function WeatherForecastDay (props) {
     return (
       <div>
         <div>{today}</div>
-        <div>{Math.round(props.data.temp.day)}℃</div>
+        <div>
+          <span>{Math.round(props.data.temp.max)}℃</span>
+          <span>{Math.round(props.data.temp.min)}℃</span>
+        </div>
       </div>
     );
 }
