@@ -8,8 +8,8 @@ export default function Forecast (props) {
     function handleResponse (response) {
         console.log(response);
         setLoaded(true);
-        setForecast(response.data.daily[0].clouds);
-        
+        setForecast(response.data.daily);
+    
     }
 
 function load () {
@@ -24,7 +24,20 @@ function load () {
 if (loaded) {
     return (
         <div>
-            <div>
+        <div>
+            {forecast.map(function(forecastDay, index) {
+                if (index < 5) {
+                return (
+                    <div key={index}>
+                        <WeatherForecastDay data={forecastDay}/>
+                    </div>
+                )
+                }else {
+                    return null();
+                }
+            })}
+        </div>
+        <div>
                 Mon
             </div>
             <div>
