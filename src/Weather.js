@@ -15,7 +15,6 @@ export default function Weather (props) {
       console.log(response.data);
       setReady(true);
       setWeather({
-      date: new Date(response.data.dt * 1000),
       sunrise: new Date(
       (response.data.sys.sunrise + response.data.timezone) * 1000
       ),
@@ -26,6 +25,7 @@ export default function Weather (props) {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       city: response.data.name,
+      coordinates: response.data.coord,
         });
   }
 
@@ -38,39 +38,40 @@ export default function Weather (props) {
         setCity(event.target.value);
       }
 
-    function handleResponse () {
-    let apiKey = "a6fba614573136180c060a15c9ad70ad";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleWeatherData);
-    }
+      function handleResponse () {
+      let apiKey = "a6fba614573136180c060a15c9ad70ad";
+      let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+      axios.get(apiUrl).then(handleWeatherData);
+      }
 
-    if (ready) {
-      return (
-        <div className="Weather">
-          <form onSubmit={handleSubmit}>
-            <input type="search" onChange={handleCityChange} />
-            <input type="submit" />
-          </form>
-          <div>
-            <div>{weather.city}</div>
-            <FormattedDate date={weather.sunrise} />
-            <Sunrise sunrise={weather.sunrise} />
-            <Sunset sunset={weather.sunset} />
-            <div>⛅</div>
-            <div>{Math.round(weather.temperature)}℃</div>
-            <div>Humidity: {weather.humidity}%</div>
-            <div>Wind: {weather.wind}km/h</div>
-            <Forecast />
-          </div>
-        </div>
-      );
-  } else {
-handleResponse();
+      //api.openweathermap.org/data/2.5/forecast?lat=51.5072&lon=0.1276&appid=a6fba614573136180c060a15c9ad70ad
+      //api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+
+
+      if (ready) {
         return (
-            "Loading..."
-        )
-        
-     }
+          <div className="Weather">
+            <form onSubmit={handleSubmit}>
+              <input type="search" onChange={handleCityChange} />
+              <input type="submit" />
+            </form>
+            <div>
+              <div>{weather.city}</div>
+              <FormattedDate date={weather.sunrise} />
+              <Sunrise sunrise={weather.sunrise} />
+              <Sunset sunset={weather.sunset} />
+              <div>⛅</div>
+              <div>{Math.round(weather.temperature)}℃</div>
+              <div>Humidity: {weather.humidity}%</div>
+              <div>Wind: {weather.wind}km/h</div>
+              <Forecast coordinates={weather.coordinates} />
+            </div>
+          </div>
+        );
+      } else {
+        handleResponse();
+        return "Loading...";
+      }
     
 }
     
