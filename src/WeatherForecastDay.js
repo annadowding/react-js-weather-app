@@ -7,13 +7,9 @@ export default function WeatherForecastDay (props) {
     let today = days[day.getDay()];
  
     return (
-        <div>
-            <div>
-                {today}
-            </div>
-            <div>
-                {Math.round(props.data.temp.day)}℃
-            </div>
-        </div>
-    )
+      <div>
+        <div>{today}</div>
+        <div>{Math.round(props.data.temp.day)}℃</div>
+      </div>
+    );
 }

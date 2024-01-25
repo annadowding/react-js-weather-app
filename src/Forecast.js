@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherForecastDay from "./WeatherForecastDay.js";
+import ForecastIcon from "./ForecastIcon.js";
 
 export default function Forecast (props) {
     let [loaded, setLoaded] = useState(false);
@@ -29,23 +30,19 @@ if (loaded) {
                 {forecast.map(function(forecastDay, index) {
                     if (index < 5) {
                     return (
+                      <div>
                         <div key={index}>
-                            <WeatherForecastDay data={forecastDay}/>
+                          <WeatherForecastDay data={forecastDay} />
                         </div>
+                        <div key={index}>
+                          <ForecastIcon data={forecastDay} />
+                        </div>
+                      </div>
                     );
                     }else {
                         return(null);
                     }
                 })} 
-                
-            </div>
-            <div>
-                Mon
-            </div>
-            <div>
-                ☀️
-            </div>
-            <div>
                 
             </div>
         </div>
