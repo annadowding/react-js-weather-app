@@ -33,8 +33,6 @@ if (loaded) {
                       <div>
                         <div key={index}>
                           <WeatherForecastDay data={forecastDay} />
-                        </div>
-                        <div key={index}>
                           <ForecastIcon data={forecastDay} />
                         </div>
                       </div>
