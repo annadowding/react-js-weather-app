@@ -3,10 +3,10 @@ import Weather from "./Weather.js";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App container">
       <header className="App-header">
         <h1>What is the weather today?</h1>
-        <Weather defaultCity="London"/>
+        <Weather/>
         <footer>
           This project was coded by{" "}
           <a href="https://github.com/annadowding">Anna Dowding</a> and is{" "}

@@ -6,9 +6,9 @@ import Sunrise from "./Sunrise.js";
 import Sunset from "./Sunset.js";
 import Forecast from "./Forecast.js";
 
-export default function Weather (props) {
+export default function Weather () {
     const[ready, setReady] = useState(false);
-    const[city, setCity]= useState(props.defaultCity);
+    const[city, setCity]= useState("Tokyo");
     const[weather, setWeather] = useState({});
 
     function handleWeatherData (response) {
@@ -44,10 +44,6 @@ export default function Weather (props) {
       axios.get(apiUrl).then(handleWeatherData);
       }
 
-      //api.openweathermap.org/data/2.5/forecast?lat=51.5072&lon=0.1276&appid=a6fba614573136180c060a15c9ad70ad
-      //api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-
-
       if (ready) {
         return (
           <div className="Weather">
@@ -67,7 +63,7 @@ export default function Weather (props) {
                 <div>Wind: {weather.wind}km/h</div>
               </div>
             
-                <div className="forecast">
+                <div>
                   <Forecast coordinates={weather.coordinates} />
                 </div> 
             </div>
