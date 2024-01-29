@@ -26,6 +26,7 @@ export default function Weather () {
       wind: response.data.wind.speed,
       city: response.data.name,
       coordinates: response.data.coord,
+      icon: response.data.weather[0].icon,
         });
   }
 
@@ -57,15 +58,17 @@ export default function Weather () {
                 <FormattedDate date={weather.sunrise} />
                 <Sunrise sunrise={weather.sunrise} />
                 <Sunset sunset={weather.sunset} />
-                <div>⛅</div>
+                <img
+                  src="https://openweathermap.org/img/wn/{weather.icon}@2x.png"
+                />
                 <div>{Math.round(weather.temperature)}℃</div>
                 <div>Humidity: {weather.humidity}%</div>
                 <div>Wind: {weather.wind}km/h</div>
               </div>
-            
-                <div>
-                  <Forecast coordinates={weather.coordinates} />
-                </div> 
+
+              <div>
+                <Forecast coordinates={weather.coordinates} />
+              </div>
             </div>
           </div>
         );
